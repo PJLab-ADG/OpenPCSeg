@@ -1,6 +1,6 @@
 # PCSeg: An Open Source Point Cloud Segmentation Codebase
 [![License](https://img.shields.io/static/v1?label=License&message=Apache-2.0&color=yellow)]()
-[![GitHub forks](https://img.shields.io/github/forks/OpenPCSeg/PCSeg.svg?style=social&label=Fork&maxAge=2592000)](https://github.com/OpenPCSeg/PCSeg)
+[![GitHub forks](https://img.shields.io/github/forks/OpenPCSeg/PCSeg.svg?style=social&label=Fork&maxAge=2592000)](https://github.com/PJLab-ADG/PCSeg)
 
 `PCSeg` is an open-source point cloud segmentation toolbox based on [PyTorch](https://pytorch.org/), heading towards the unification and thriving of 3D scene understanding and its related areas. With the help of `PCSeg`, we benchmark methods in a way that pursues fairness, efficiency, and effectiveness, on prevailing large-scale point cloud datasets. At this moment, `PCSeg` focuses on outdoor point cloud segmentation for autonomous driving.
 
