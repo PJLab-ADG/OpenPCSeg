@@ -1,0 +1,1 @@
+from .fidnet import FIDNet

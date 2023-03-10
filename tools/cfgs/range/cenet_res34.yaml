@@ -1,0 +1,47 @@
+MODALITY: 'range'
+
+DATA:
+    DATASET: 'nuscenes'  # choices: ['nuscenes', 'semantickitti', 'scribblekitti']
+    DATA_PATH: 'data_root/nuScenes-mini/'
+    DATA_SPLIT: {'train': 'train', 'test': ['val']}
+    IGNORE_LABEL: 0
+    H: 32
+    W: 1920
+    AUGMENT: 'GlobalAugment'  # choices: ['GlobalAugment', 'NoAugment']
+    IF_DROP: True
+    IF_FLIP: True
+    IF_SCALE: True
+    IF_ROTATE: True
+    IF_JITTER: True
+    IF_RANGE_MIX: 0.9
+    IF_RANGE_SHIFT: 0.9
+    IF_RANGE_PASTE: 0.9
+    IF_RANGE_UNION: 0.
+
+MODEL:
+    NAME: CENet
+    IGNORE_LABEL: 0
+    NUM_CLASS: 20
+    IF_BN: True
+    IF_INTENSITY: True
+    IF_RANGE: True
+    WITH_NORM: False
+    LOSS: 'dice'
+    IF_LS_LOSS: True
+    IF_BD_LOSS: True
+    TOP_K_PERCENT_PIXELS: 1.0
+    IF_AUX: True
+
+OPTIM:
+    BATCH_SIZE_PER_GPU: 1
+    NUM_EPOCHS: 50
+    WARMUP_EPOCH: 10
+    GRAD_NORM_CLIP: 10
+    OPTIMIZER: adamw
+    BETA1: 0.9
+    BETA2: 0.999
+    WEIGHT_DECAY: 0.01
+    EPS: 0.000005
+    LR_PER_SAMPLE: 0.0025
+    LEARNING_RATE: 0.0025
+    SCHEDULER: onecycle

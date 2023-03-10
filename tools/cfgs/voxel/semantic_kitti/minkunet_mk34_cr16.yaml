@@ -1,0 +1,35 @@
+MODALITY: 'voxel'
+
+DATA:
+    DATASET: 'semantickitti'  # choices: ['nuscenes', 'semantickitti', 'scribblekitti']
+    PETRELOSS_CONFIG: None
+    DATA_PATH: 'data_root/SemanticKITTI/sequences/'  # hint: customize your data path
+    VOXEL_SIZE: 0.05
+    AUGMENT: 'GlobalAugment_LP'  # choices: ['GlobalAugment', 'GlobalAugment_LP']
+    NUM_POINTS: 1000000
+    TRAINVAL: False           # train set: train + val
+    TTA: False
+
+MODEL:
+    NAME: MinkUNet
+    IGNORE_LABEL: 0
+    IN_FEATURE_DIM: 4
+    BLOCK: ResBlock
+    NUM_LAYER: [2, 3, 4, 6, 2, 2, 2, 2]
+    PLANES: [32, 32, 64, 128, 256, 256, 128, 96, 96]
+    cr: 1.6
+    DROPOUT_P: 0.0
+    LABEL_SMOOTHING: 0.0
+    IF_DIST: True  # True: multi-gpus, False: single gpu
+
+OPTIM:
+    BATCH_SIZE_PER_GPU: 12  
+    NUM_EPOCHS: 36
+    OPTIMIZER: sgd
+    LR_PER_SAMPLE: 0.02
+    WEIGHT_DECAY: 0.0001
+    MOMENTUM: 0.9
+    NESTEROV: True
+    GRAD_NORM_CLIP: 10
+    SCHEDULER: linear_warmup_with_cosdecay
+    WARMUP_EPOCH: 1

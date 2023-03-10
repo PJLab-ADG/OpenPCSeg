@@ -1,0 +1,34 @@
+MODALITY: 'cylinder'
+
+DATA:
+    DATASET: 'waymo'     # choices: ['nuscenes', 'semantickitti', 'scribblekitti']
+    PETRELOSS_CONFIG: None
+    DATA_PATH: 'placeholder'  # hint: customize your data path
+    CYLINDER_GRID_SIZE: [ 480, 360, 32 ]
+    CYLINDER_SPACE_MAX: [ 50, 180, 2 ]
+    CYLINDER_SPACE_MIN: [ 0, -180, -4 ]
+    AUGMENT: 'GlobalAugment_LP'  # choices: ['GlobalAugment', 'GlobalAugment_LP']
+    TRAINVAL: False              # train set: train + val
+    TTA: False
+
+MODEL:
+    NAME: Cylinder_TS
+    IGNORE_LABEL: 0
+    IN_FEATURE_DIM: 10
+    DROPOUT_P: 0.0
+    LABEL_SMOOTHING: 0.0
+    INIT_SIZE: 32
+    POINT_REFINEMENT: True
+    IF_DIST: True   # True: multi-gpus, False: single gpu
+
+OPTIM:
+    BATCH_SIZE_PER_GPU: 1
+    NUM_EPOCHS: 36
+    OPTIMIZER: sgd
+    LR_PER_SAMPLE: 0.02
+    WEIGHT_DECAY: 0.0001
+    MOMENTUM: 0.9
+    NESTEROV: True
+    GRAD_NORM_CLIP: 10
+    SCHEDULER: linear_warmup_with_cosdecay
+    WARMUP_EPOCH: 1
