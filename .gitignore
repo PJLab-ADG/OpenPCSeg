@@ -6,7 +6,7 @@
 data_root
 data_root/
 output/
-package/
+# package/
 logs/
 checkpoints/
 output_debug
