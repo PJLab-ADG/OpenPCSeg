@@ -1,10 +1,11 @@
 # PCSeg: An Open Source Point Cloud Segmentation Codebase
 [![License](https://img.shields.io/static/v1?label=License&message=Apache-2.0&color=yellow)]()
-[![GitHub forks](https://img.shields.io/github/forks/OpenPCSeg/PCSeg.svg?style=social&label=Fork&maxAge=2592000)](https://github.com/OpenPCSeg/PCSeg)
+[![open issues](https://isitmaintained.com/badge/open/PJLab-ADG/PCSeg.svg)](https://github.com/PJLab-ADG/PCSeg/issues)
+[![GitHub forks](https://img.shields.io/github/forks/PJLab-ADG/PCSeg.svg?style=social&label=Fork&maxAge=2592000)](https://github.com/PJLab-ADG/PCSeg)
 
 `PCSeg` is an open-source point cloud segmentation toolbox based on [PyTorch](https://pytorch.org/), heading towards the unification and thriving of 3D scene understanding and its related areas. With the help of `PCSeg`, we benchmark methods in a way that pursues fairness, efficiency, and effectiveness, on prevailing large-scale point cloud datasets. At this moment, `PCSeg` focuses on outdoor point cloud segmentation for autonomous driving.
 
-This project is developed and maintained by Autonomous Driving Group [at] [Shanghai AI Laboratory](https://www.shlab.org.cn/) (ADLab).
+**This project is developed and maintained by Autonomous Driving Group [at] [Shanghai AI Laboratory](https://www.shlab.org.cn/) (ADLab).**
 
 
 | <img src="./docs/figs/demo-bev-1.gif" align="middle"> | <img src="./docs/figs/demo-bev-2.gif" align="middle"> | <img src="./docs/figs/demo-bev-3.gif" align="middle"> |
