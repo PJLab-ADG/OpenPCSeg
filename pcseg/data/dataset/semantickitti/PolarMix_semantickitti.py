@@ -4,7 +4,7 @@ This file is copied from https://github.com/xiaoaoran/polarmix
 
 
 import numpy as np
-instance_classes_kitti = [0, 1, 2, 3, 4, 5, 6, 7]
+instance_classes_kitti = [1, 2, 3, 4, 5, 6, 7, 8]
 
 def swap(pt1, pt2, start_angle, end_angle, label1, label2):
     # calculate horizontal angle for each point
