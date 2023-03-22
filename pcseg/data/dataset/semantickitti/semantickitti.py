@@ -7,7 +7,7 @@ from .PolarMix_semantickitti import polarmix
 import random
 
 # used for polarmix
-instance_classes = [0, 1, 2, 3, 4, 5, 6, 7]
+instance_classes = [1, 2, 3, 4, 5, 6, 7, 8]
 Omega = [np.random.random() * np.pi * 2 / 3, (np.random.random() + 1) * np.pi * 2 / 3]
 
 def absoluteFilePaths(directory):
