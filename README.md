@@ -1,3 +1,5 @@
+<img src="docs/figs/pcseg_logo.jpg" align="right" width="30%">
+
 # PCSeg: An Open Source Point Cloud Segmentation Codebase
 [![License](https://img.shields.io/static/v1?label=License&message=Apache-2.0&color=yellow)]()
 [![open issues](https://isitmaintained.com/badge/open/PJLab-ADG/PCSeg.svg)](https://github.com/PJLab-ADG/PCSeg/issues)
