@@ -53,7 +53,7 @@ def fast_hist_crop(output, target, unique_label):
 
 
 def parse_config():
-    parser = argparse.ArgumentParser(description='OpenPCSeg training script version 0.1')
+    parser = argparse.ArgumentParser(description='PCSeg training script version 0.1')
 
     # == general configs ==
     parser.add_argument('--cfg_file', type=str, default='tools/cfgs/voxel/minkunet_mk18_cr10.yaml',
