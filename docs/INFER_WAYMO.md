@@ -58,5 +58,5 @@ python tools/scripts/vis_waymo.py \
 ```
 
 Here are some inference & visualization results:
-<img src="docs/figs/wod_vis_01.png" align="center" width="80%">
-<img src="docs/figs/wod_vis_02.png" align="center" width="80%">
+<img src="./figs/wod_vis_01.png" align="center" width="80%">
+<img src="./figs/wod_vis_02.png" align="center" width="80%">
