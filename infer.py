@@ -53,7 +53,7 @@ def fast_hist_crop(output, target, unique_label):
 
 
 def parse_config():
-    parser = argparse.ArgumentParser(description='PCSeg training script version 0.1')
+    parser = argparse.ArgumentParser(description='OpenPCSeg training script version 0.1')
 
     # == general configs ==
     parser.add_argument('--cfg_file', type=str, default='tools/cfgs/voxel/minkunet_mk18_cr10.yaml',
@@ -65,7 +65,7 @@ def parse_config():
     parser.add_argument('--fix_random_seed', action='store_true', default=False,
                         help='whether to fix random seed.')
     # == training configs ==
-    parser.add_argument('--batch_size', type=int, default=None, required=False,
+    parser.add_argument('--batch_size', type=int, default=1, required=False,
                         help='batch size for model training.')
     parser.add_argument('--epochs', type=int, default=None, required=False,
                         help='number of epochs for model training.')
@@ -84,7 +84,7 @@ def parse_config():
     parser.add_argument('--merge_all_iters_to_one_epoch', action='store_true', default=False,
                         help='')
     # == evaluation configs ==
-    parser.add_argument('--eval', action='store_true', default=False,
+    parser.add_argument('--eval', action='store_true', default=True,
                         help='only perform evaluate')
     parser.add_argument('--eval_interval', type=int, default=50,
                         help='number of training epochs')
@@ -312,8 +312,12 @@ class Trainer:
         self.it = checkpoint['it']
         self.model.load_params(checkpoint['model_state'], strict=True)
         self.optimizer.load_state_dict(checkpoint['optimizer_state'])
-        self.scaler.load_state_dict(checkpoint['scaler_state'])
-        self.scheduler.load_state_dict(checkpoint['scheduler_state'])
+        try:
+            self.scaler.load_state_dict(checkpoint['scaler_state'])
+            self.scheduler.load_state_dict(checkpoint['scheduler_state'])
+        except Exception as e:
+            print('Ignore error:', e)
+        
         self.logger.info('==> Done')
         return
 
@@ -417,6 +421,8 @@ class Trainer:
             progress_bar = tqdm.tqdm(total=len(dataloader), leave=True, desc='eval', dynamic_ncols=True)
         metric = {}
         metric['hist_list'] = []
+        save_dir = self.cfgs.DATA.OUTPUT_DIR
+        os.makedirs(save_dir, exist_ok=True) 
 
         for i, batch_dict in enumerate(dataloader):
             load_data_to_gpu(batch_dict)
@@ -426,6 +432,10 @@ class Trainer:
             
             point_predict = ret_dict['point_predict']
             point_labels = ret_dict['point_labels']
+            
+            save_name = (10-len(str(i))) * '0' + str(i)
+            save_path = save_dir + save_name + '.npy'
+            np.save(save_path, ret_dict['point_predict'][0])
 
             if isinstance(point_predict, torch.Tensor):
                 if point_predict.size() != point_labels.size():
@@ -441,53 +451,6 @@ class Trainer:
         
         if self.rank == 0:
             progress_bar.close()
-
-        if self.if_dist_train:
-            rank, world_size = common_utils.get_dist_info()
-            metric = common_utils.merge_results_dist([metric], world_size, tmpdir=result_dir / 'tmpdir')
-        
-        if self.rank != 0:
-            return {}
-        
-        if self.if_dist_train:
-            for key, val in metric[0].items():
-                for k in range(1, world_size):
-                    metric[0][key] += metric[k][key]
-            metric = metric[0]
-        
-        hist_list = metric['hist_list'][:len(dataset)]
-        iou = per_class_iu(sum(hist_list))
-        self.logger.info('Validation per class iou: ')
-
-        for class_name, class_iou in zip(class_names[1:], iou):
-            self.logger_tb.add_scalar(f"{prefix}/{class_name}", class_iou * 100, self.cur_epoch+1)
-        
-        val_miou = np.nanmean(iou) * 100
-        self.logger_tb.add_scalar(f"{prefix}_miou", val_miou, self.cur_epoch + 1)
-
-        # logger confusion matrix and
-        table_xy = PrettyTable()
-        table_xy.title = 'Validation iou'
-        table_xy.field_names = ["Classes", "IoU"]
-        table_xy.align = 'l'
-        table_xy.add_row(["All", round(val_miou, 4)])
-
-        for i in range(len(class_names[1:])):
-            table_xy.add_row([class_names[i+1], round(iou[i] * 100, 4)])
-        self.logger.info(table_xy)
-
-        dis_matrix = sum(hist_list)
-        table = PrettyTable()
-        table.title = 'Confusion matrix'
-        table.field_names = ["Classes"] + [k for k in class_names[1:]] + ["Points"]
-        table.align = 'l'
-
-        for i in range(len(class_names[1:])):
-            sum_pixel = sum([k for k in dis_matrix[i]])
-            row = [class_names[i + 1]] + [round(k/(sum_pixel +1e-8) * 100, 4) for k in dis_matrix[i]] + [sum_pixel, ]
-            table.add_row(row)
-        
-        self.logger.info(table)
 
         return {}
 
@@ -528,7 +491,6 @@ class Trainer:
                 data_config = copy.deepcopy(self.cfgs.DATA)
                 _, test_loader, _ = build_dataloader(
                     data_cfgs=data_config,
-                    modality=self.cfgs.MODALITY,
                     batch_size=self.cfgs.OPTIM.BATCH_SIZE_PER_GPU,
                     dist=self.if_dist_train,
                     workers=self.args.workers,

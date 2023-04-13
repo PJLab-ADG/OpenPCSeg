@@ -2,6 +2,7 @@ import numpy as np
 import torch
 from torch.utils import data
 from .waymo import WaymoDataset
+from .waymo_infer import WaymoInferDataset
 from torchsparse import SparseTensor
 from torchsparse.utils.collate import sparse_collate_fn
 from torchsparse.utils.quantize import sparse_quantize
@@ -25,14 +26,26 @@ class WaymoVoxelDataset(data.Dataset):
               'TREE_TRUNK', 'CURB', 'ROAD', 'LANE_MARKER', 'OTHER_GROUND', 'WALKABLE', 'SIDEWALK']
         self.root_path = root_path if root_path is not None else self.data_cfgs.DATA_PATH
         self.logger = logger
-        self.point_cloud_dataset = WaymoDataset(
-            data_cfgs=data_cfgs,
-            training=training,
-            class_names=self.class_names,
-            root_path=self.root_path,
-            logger=logger,
-            if_scribble=True if self.data_cfgs.DATASET == 'scribblekitti' else False,
-        )
+        self.use_infer_data = data_cfgs.get('USE_INFER_DATA', False)
+
+        if not self.use_infer_data:
+            self.point_cloud_dataset = WaymoDataset(
+                data_cfgs=data_cfgs,
+                training=training,
+                class_names=self.class_names,
+                root_path=self.root_path,
+                logger=logger,
+                if_scribble=True if self.data_cfgs.DATASET == 'scribblekitti' else False,
+            )
+        else:
+            self.point_cloud_dataset = WaymoInferDataset(
+                data_cfgs=data_cfgs,
+                training=training,
+                class_names=self.class_names,
+                root_path=self.root_path,
+                logger=logger,
+                if_scribble=True if self.data_cfgs.DATASET == 'scribblekitti' else False,
+            )
 
         self.voxel_size = data_cfgs.VOXEL_SIZE
         self.num_points = data_cfgs.NUM_POINTS
