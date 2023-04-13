@@ -71,7 +71,6 @@ class WaymoDataset(data.Dataset):
 
     def resample(self):
         self.sample_idx = np.random.choice(self._sample_idx, self.samples_per_epoch)
-    
 
     def __getitem__(self, index):
         index = self.sample_idx[index]
@@ -85,9 +84,9 @@ class WaymoDataset(data.Dataset):
         intenel1 = np.load(sec_path)[:, 1:3].reshape((-1, 2)).astype(np.float32)
         pc_second = np.concatenate((raw_xyz1, intenel1), 1)
 
-        raw_data = np.concatenate((pc_first,pc_second),0).astype(np.float32).copy()
+        raw_data = np.concatenate((pc_first, pc_second), 0).astype(np.float32).copy()
         # NORMALIZE INTENSITY and elongation
-        raw_data [:, 3:5] = np.tanh(raw_data [:, 3:5])
+        raw_data[:, 3:5] = np.tanh(raw_data[:, 3:5])
     
         if self.split == 'test':
             annotated_data = np.expand_dims(np.zeros_like(raw_data[:, 0], dtype=int), axis=1)
