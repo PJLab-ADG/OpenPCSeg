@@ -56,3 +56,7 @@ python tools/scripts/vis_waymo.py \
     --pc_path infer_data/output/segment-10082223140073588526_6140_000_6160_000_with_camera_labels.unpacked/LiDAR/0000000100.npy \
     --label_path infer_data/output/segment-10082223140073588526_6140_000_6160_000_with_camera_labels.unpacked/PCSeg/0000000100.npy
 ```
+
+Here are some inference & visualization results:
+<img src="docs/figs/wod_vis_01.png" align="center" width="80%">
+<img src="docs/figs/wod_vis_02.png" align="center" width="80%">
