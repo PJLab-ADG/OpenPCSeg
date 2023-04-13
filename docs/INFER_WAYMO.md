@@ -15,7 +15,7 @@ python setup.py develop
 
 ### Prepare Waymo Data
 
-First, download a sequence from [Waymo Perception Dataset v1.3.1](https://waymo.com/intl/en_us/open/download/).
+First, download a sequence from [Waymo Perception Dataset v1.3.2](https://waymo.com/intl/en_us/open/download/).
 
 For example, you can select `segment-10082223140073588526_6140_000_6160_000_with_camera_labels.tfrecord` from the training set.
 
