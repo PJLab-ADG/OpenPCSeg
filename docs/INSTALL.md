@@ -97,3 +97,11 @@ pip uninstall setuptools
 pip install setuptools==59.5.0
 ```
 
+#### 4.6 - Register PCSeg
+
+Inside `PCSeg` directory:
+
+```Shell
+python setup.py develop
+```
+
