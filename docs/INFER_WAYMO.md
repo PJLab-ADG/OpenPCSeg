@@ -40,7 +40,7 @@ conda activate pcseg
 CUDA_VISIBLE_DEVICES=0 sh infer.sh 1 --cfg_file tools/cfgs/voxel/waymo/minkunet_mk34_cr16_infer.yaml --batch_size 1 --extra_tag default
 ```
 
-# Visualize Predictions
+### Visualize Predictions
 
 We encourage you to create a separate environment for the visualization of Waymo Open Dataset results, on a machine with GUI:
 

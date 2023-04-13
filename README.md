@@ -29,6 +29,7 @@
 
 
 ## Changelog
+- \[2023.4\] - Support sequence-wise `PCSeg` inference and visualization on Waymo Open Dataset.
 - \[2023.3\] - Initial release of `PCSeg v1.0`.
 
 
@@ -47,6 +48,7 @@
 - [Installation](#installation)
 - [Data Preparation](#data-preparation)
 - [Getting Started](#getting-started)
+- [Visualization](#visualization)
 - [Citation](#citation)
 - [Authors](#authors)
 - [License](#license)
@@ -124,6 +126,13 @@ Please refer to [DATA_PREPARE.md](docs/DATA_PREPARE.md) for the details to prepa
 ## Getting Started
 Please refer to [GET_STARTED.md](docs/GET_STARTED.md) to learn more usage about this codebase.
 
+
+## Visualization
+We recently supported a PCSeg visualization tool for Waymo Open Dataset, please check [INFER_WAYMO.md](docs/INFER_WAYMO.md).
+
+Here are some inference & visualization results:
+<img src="docs/figs/wod_vis_01.png" align="center" width="70%">
+<img src="docs/figs/wod_vis_02.png" align="center" width="70%">
 
 ## Citation
 If you find this work helpful, please kindly consider citing:
