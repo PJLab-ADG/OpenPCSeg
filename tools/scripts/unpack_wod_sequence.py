@@ -70,17 +70,12 @@ def process_single_frame(workload):
             frame, range_images, camera_projections,
             range_image_top_pose, ri_index=(0, 1))
 
-    # currenty strategy is to concatenate all point features (x, y, z,
-    # intensity) of 5 LiDARs and filter out NLZ points
-    lidar_points = np.concatenate(points, axis=0)
-    # vehicle_points = (local_pose_transform @ np.concatenate([lidar_points, np.ones((len(lidar_points), 1))], axis=1).T)[0:3, :].T
-    vehicle_points = lidar_points
-    points_in_NLZ_flag = np.concatenate(
-        points_in_NLZ_flag, axis=0).reshape(-1, 1)
-    points_intensity = np.concatenate(points_intensity, axis=0).reshape(-1, 1)
-    points_intensity = np.tanh(points_intensity)
-    points_elogation = np.concatenate(points_elogation, axis=0).reshape(-1, 1)
-    points_elogation = np.tanh(points_elogation)
+    points, cp_points, points_in_NLZ_flag, points_intensity, points_elogation \
+        = points[0], cp_points[0], points_in_NLZ_flag[0], points_intensity[0], points_elogation[0]
+    vehicle_points = points
+    points_in_NLZ_flag = points_in_NLZ_flag.reshape(-1, 1)
+    points_intensity = np.tanh(points_intensity).reshape(-1, 1)
+    points_elogation = np.tanh(points_elogation).reshape(-1, 1)
     concatenated_vehicle_points = np.concatenate(
         (vehicle_points, points_intensity, points_elogation), axis=1)
     concatenated_vehicle_points = \
