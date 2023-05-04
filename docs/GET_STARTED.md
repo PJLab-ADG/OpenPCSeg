@@ -31,7 +31,7 @@ CUDA_VISIBLE_DEVICES=2,3 sh dist_train.sh 2 --cfg_file tools/cfgs/voxel/waymo/cy
 After building according to [installation instructions](./INSTALL.md), run the container while mounting the dataset, e.g. SemanticKITTI:
 
 ```bash
-docker run -it --rm --gpus all -v /home/julian/Downloads/semanticKITTI/dataset:/home/pcseg/data_root/SemanticKITTI/ pcseg
+docker run -it --rm --gpus all -v /path/to/logs:/home/pcseg -v /path/to/kitti/semanticKITTI/dataset:/home/pcseg/data_root/SemanticKITTI/ pcseg
 ```
 
 and follow the train instructions above

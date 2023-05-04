@@ -3,6 +3,7 @@ import cv2
 import glob
 import random
 import yaml
+from itertools import chain
 
 import numpy as np
 import torch
@@ -80,14 +81,25 @@ class SemkittiRangeViewDataset(data.Dataset):
         if self.split == 'train': folders = ['00', '01', '02', '03', '04', '05', '06', '07', '09', '10']
         elif self.split == 'val': folders = ['08']
         elif self.split == 'test': folders = ['11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21']
-        
-        self.lidar_list = []
-        for folder in folders:
-            self.lidar_list += glob.glob(self.root + 'sequences/' + folder + '/velodyne/*.bin') 
-        print("Loading '{}' samples from SemanticKITTI under '{}' split".format(len(self.lidar_list), self.split))
+
+        if not os.path.exists(self.root):
+            raise ValueError(f"SemanticKITTI root dir {self.root} doesn't exist!")
+
+        if not os.path.exists(self.root + "sequences"):
+            raise ValueError("Please use SemanticKITTI root directory, e.g. /path/to/SemanticKITTI/dataset")
+
+        self.lidar_list = list(
+            chain.from_iterable(glob.glob(self.root + 'sequences/' + f + '/velodyne/*.bin') for f in folders))
+        if len(self.lidar_list) == 0:
+            raise ValueError(f"Coudn't read pointclouds. Found {len(self.lidar_list)} clouds")
 
         self.label_list = [i.replace("velodyne", "labels") for i in self.lidar_list]
         self.label_list = [i.replace("bin", "label") for i in self.label_list]
+
+        if not any([os.path.exists(path) for path in self.label_list]):
+            raise ValueError("Couldn't find matching labels")
+
+        print("Loading {} samples from SemanticKITTI under {} split".format(len(self.lidar_list), self.split))
 
         if self.split == 'train_test':
             root_psuedo_labels = '/mnt/lustre/konglingdong/data/sets/sequences/'
