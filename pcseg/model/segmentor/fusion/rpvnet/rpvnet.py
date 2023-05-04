@@ -23,7 +23,7 @@ from .utils import initial_voxelize, point_to_voxel, voxel_to_point
 from pcseg.loss import Losses
 
 
-import range_utils.nn.functional as rnf
+from .range_lib.range_utils.nn import functional as rnf
 
 
 __all__ = ['RPVNet', 'SalsaNext']
