@@ -299,11 +299,11 @@ class SemLaserScan(LaserScan):
 
     # projection color with semantic labels
     self.proj_sem_label = np.zeros((self.proj_H, self.proj_W), dtype=np.int32)     # [H, W]: label
-    self.proj_sem_color = np.zeros((self.proj_H, self.proj_W, 3), dtype=np.float)  # [H, W, 3]: color
+    self.proj_sem_color = np.zeros((self.proj_H, self.proj_W, 3), dtype=np.float32)  # [H, W, 3]: color
 
     # projection color with instance labels
     self.proj_inst_label = np.zeros((self.proj_H, self.proj_W), dtype=np.int32)     # [H, W]: label
-    self.proj_inst_color = np.zeros((self.proj_H, self.proj_W, 3), dtype=np.float)  # [H, W, 3]: color
+    self.proj_inst_color = np.zeros((self.proj_H, self.proj_W, 3), dtype=np.float32)  # [H, W, 3]: color
 
 
   def open_label(self, filename):
