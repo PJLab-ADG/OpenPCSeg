@@ -2,7 +2,7 @@
 
 set -x
 NGPUS=$1
-PY_ARGS=${@:2}
+PY_ARGS=${*:2}
 
 while true
 do
@@ -16,7 +16,5 @@ echo $PORT
 
 python -m torch.distributed.launch --nproc_per_node=${NGPUS} \
     --rdzv_endpoint=localhost:${PORT} train.py --launcher pytorch --amp \
-    ${PY_ARGS}
-
-echo 'dist_train finished!'
+    ${PY_ARGS} && echo 'dist_train finished!'
     
