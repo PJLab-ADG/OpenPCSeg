@@ -146,9 +146,9 @@ If you find this work helpful, please kindly consider citing:
 ```
 
 ## Authors
-Liu Youquan, Bai Yeqi^†^, Kong Lingdong, Chen Runnan, Hou Yuenan, Shi Botian, Li Yikang
+Liu Youquan, Bai Yeqi†, Kong Lingdong, Chen Runnan, Hou Yuenan, Shi Botian, Li Yikang
 
-^†^Project Lead
+†Project Lead
 
 ## License
 OpenPCSeg is released under the **Apache 2.0 license**, while some specific operations in this codebase might be with other licenses. Please refer to [LICENSE](docs/LICENSE) for a more careful check, if you are using our code for commercial matters.
