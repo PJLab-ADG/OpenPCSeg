@@ -1,11 +1,11 @@
 <img src="docs/figs/pcseg_logo.jpg" align="right" width="30%">
 
-# PCSeg: An Open Source Point Cloud Segmentation Codebase
+# OpenPCSeg: An Open Source Point Cloud Segmentation Codebase
 [![License](https://img.shields.io/static/v1?label=License&message=Apache-2.0&color=yellow)]()
 [![open issues](https://isitmaintained.com/badge/open/PJLab-ADG/PCSeg.svg)](https://github.com/PJLab-ADG/PCSeg/issues)
 [![GitHub forks](https://img.shields.io/github/forks/PJLab-ADG/PCSeg.svg?style=social&label=Fork&maxAge=2592000)](https://github.com/PJLab-ADG/PCSeg)
 
-`PCSeg` is an open-source point cloud segmentation toolbox based on [PyTorch](https://pytorch.org/), heading towards the unification and thriving of 3D scene understanding and its related areas. With the help of `PCSeg`, we benchmark methods in a way that pursues fairness, efficiency, and effectiveness, on prevailing large-scale point cloud datasets. At this moment, `PCSeg` focuses on outdoor point cloud segmentation for autonomous driving.
+`OpenPCSeg` is an open-source point cloud segmentation toolbox based on [PyTorch](https://pytorch.org/), heading towards the unification and thriving of 3D scene understanding and its related areas. With the help of `OpenPCSeg`, we benchmark methods in a way that pursues fairness, efficiency, and effectiveness, on prevailing large-scale point cloud datasets. At this moment, `OpenPCSeg` focuses on outdoor point cloud segmentation for autonomous driving.
 
 **This project is developed and maintained by Autonomous Driving Group [at] [Shanghai AI Laboratory](https://www.shlab.org.cn/) (ADLab).**
 
@@ -29,8 +29,8 @@
 
 
 ## Changelog
-- \[2023.4\] - Support sequence-wise `PCSeg` inference and visualization on Waymo Open Dataset.
-- \[2023.3\] - Initial release of `PCSeg v1.0`.
+- \[2023.4\] - Support sequence-wise `OpenPCSeg` inference and visualization on Waymo Open Dataset.
+- \[2023.3\] - Initial release of `OpenPCSeg v1.0`.
 
 
 ## Upcoming Features
@@ -128,7 +128,7 @@ Please refer to [GET_STARTED.md](docs/GET_STARTED.md) to learn more usage about 
 
 
 ## Visualization
-We recently supported a PCSeg visualization tool for Waymo Open Dataset, please check [INFER_WAYMO.md](docs/INFER_WAYMO.md).
+We recently supported a OpenPCSeg visualization tool for Waymo Open Dataset, please check [INFER_WAYMO.md](docs/INFER_WAYMO.md).
 
 Here are some inference & visualization results:
 <img src="docs/figs/wod_vis_01.png" align="center" width="70%">
@@ -137,8 +137,8 @@ Here are some inference & visualization results:
 ## Citation
 If you find this work helpful, please kindly consider citing:
 ```bib
-@misc{pcseg2023,
-    title={PCSeg: An Open Source Point Cloud Segmentation Codebase},
+@misc{openpcseg2023,
+    title={OpenPCSeg: An Open Source Point Cloud Segmentation Codebase},
     author={Liu Youquan, Bai Yeqi, Kong Lingdong, Chen Runnan, Hou Yuenan, Shi Botian, Li Yikang},
     howpublished = {\url{https://github.com/PJLab-ADG/PCSeg}},
     year={2023}
@@ -146,10 +146,12 @@ If you find this work helpful, please kindly consider citing:
 ```
 
 ## Authors
-Liu Youquan, Bai Yeqi, Kong Lingdong, Chen Runnan, Hou Yuenan, Shi Botian, Li Yikang
+Liu Youquan, Bai Yeqi^†^, Kong Lingdong, Chen Runnan, Hou Yuenan, Shi Botian, Li Yikang
+
+^†^Project Lead
 
 ## License
-PCSeg is released under the **Apache 2.0 license**, while some specific operations in this codebase might be with other licenses. Please refer to [LICENSE](docs/LICENSE) for a more careful check, if you are using our code for commercial matters.
+OpenPCSeg is released under the **Apache 2.0 license**, while some specific operations in this codebase might be with other licenses. Please refer to [LICENSE](docs/LICENSE) for a more careful check, if you are using our code for commercial matters.
 
 ## Contact
 If you have questions about this repo, please contact Bai Yeqi (baiyeqi@pjlab.org.cn) or Shi Botian (shibotian@pjlab.org.cn).
