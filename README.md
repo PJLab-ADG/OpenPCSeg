@@ -1,4 +1,4 @@
-<img src="docs/figs/pcseg_logo.jpg" align="right" width="30%">
+<img src="docs/figs/pcseg_logo.png" align="right" width="30%">
 
 # OpenPCSeg: An Open Source Point Cloud Segmentation Codebase
 [![License](https://img.shields.io/static/v1?label=License&message=Apache-2.0&color=yellow)]()
