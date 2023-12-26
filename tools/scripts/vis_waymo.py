@@ -14,7 +14,7 @@ COLOR_MAP = {
     2: (0, 158, 57),  # truck
     3: (219, 218, 145),  # bus
     4: (196, 174, 210),  # othervehicle
-    5: (202.254, 59),  # motorcyclist
+    5: (202, 254, 59),  # motorcyclist
     6: (253, 185, 210),  # 　bicylist
     7: (141, 222, 141),   # pedestrain
     8: (0, 185, 200),              # traffic-sign
