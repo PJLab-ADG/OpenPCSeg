@@ -1,0 +1,13 @@
+torch-scatter==2.1.1
+tensorboard==2.12.3
+opencv_python==4.7.0.72
+pyyaml
+easydict
+numba
+strictyaml
+llvmlite
+scikit-image
+tqdm
+sharedarray
+prettytable
+setuptools==59.5.0

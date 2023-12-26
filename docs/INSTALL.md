@@ -2,8 +2,8 @@
 
 ### General Requirements
 
-This codebase is tested with `torch==1.10.0` and `torchvision==0.11.0`, with `CUDA 11.3` and `gcc 7.3.0`. In order to successfully reproduce the results reported in our paper, we recommend you to follow the exact same configuation with us. However, similar versions that came out lately should be good as well.
-
+* This codebase is tested with `torch==1.10.0` and `torchvision==0.11.0`, with `CUDA 11.3` and `gcc 7.3.0`. In order to successfully reproduce the results reported in our paper, we recommend you to follow the exact same configuation with us. However, similar versions that came out lately should be good as well.
+* OS with `ffmpeg libsm6 libxext6 libsparsehash-dev` installed
 
 ### Step 1: Create Enviroment
 ```Shell
@@ -90,7 +90,7 @@ Finished processing dependencies for rangelib==1.0.0
 ```
 #### 4.5 - Other Packages
 ```Shell
-pip install pyyaml easydict numba torchpack strictyaml llvmlite easydict scikit-image tqdm SharedArray prettytable opencv-python
+pip install pyyaml easydict numba torchpack strictyaml llvmlite easydict scikit-image tqdm SharedArray prettytable opencv-python tensorboard
 ```
 ```Shell
 pip uninstall setuptools
@@ -105,3 +105,20 @@ Inside `PCSeg` directory:
 python setup.py develop
 ```
 
+## Docker
+
+### Prerequisites
+
+Make sure you have applied the following steps before building the docker image:
+
+* Install `nvidia-docker`: `sudo apt-get install -y nvidia-container-toolkit`
+* Configure docker runtime, according to [this answer](https://stackoverflow.com/a/61737404) while [this addition](https://stackoverflow.com/a/75629058) may be necessary as of 03/2023
+* Restart docker: `sudo systemctl restart docker`
+
+### Build docker image
+
+```Shell
+docker build --build-arg USER_UID=$(id -u) --build-arg USER_GID=$(id -g) -t pcseg -f Dockerfile .
+```
+
+**Note:** `DOCKER_BUILDKIT=0 docker build ...` may be necessary. See Prerequisites
